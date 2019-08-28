@@ -38,6 +38,8 @@ Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'https://github.com/taketwo/vim-ros.git'
 Plugin 'ericcurtin/curtineincsw.vim'
 Plugin 'challenger-deep-theme/vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'morhetz/gruvbox'
 Plugin 'itchyny/lightline.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required~
@@ -147,7 +149,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme dracula  
+    colorscheme gruvbox  
 catch
 endtry
 
@@ -186,13 +188,13 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
+set shiftwidth=2  " Two space indents
+set tabstop=2     " Tab key indents two spaces at a time
+set expandtab     " Use spaces when the <Tab> key is pressed
+set cindent       " Turn on automatic C-code indentation
+" Actual formatting rules go here
 set lbr
-set tw=500
+set tw=120
 
 set ai "Auto indent
 set si "Smart indent
