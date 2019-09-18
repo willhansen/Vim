@@ -27,6 +27,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be improved, required
 filetype off                  " required
+set rtp+=~/.fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -41,6 +42,10 @@ Plugin 'challenger-deep-theme/vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'morhetz/gruvbox'
 Plugin 'itchyny/lightline.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()            " required
 filetype plugin indent on    " required~
 
@@ -59,7 +64,7 @@ set autoread
 
 " with a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
+let mapleader = "'"
 
 " fast saving
 nmap <leader>w :w!<cr>
@@ -68,6 +73,11 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 cmap w!! w !sudo tee > /dev/null %
 
+" Set up for auto pair
+let g:AutoPairsFlyMode = 1
+
+nmap <F6> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,6 +235,9 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Map for esc
+imap jj <Esc>
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
