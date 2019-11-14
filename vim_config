@@ -37,6 +37,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'https://github.com/taketwo/vim-ros.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ericcurtin/curtineincsw.vim'
 Plugin 'challenger-deep-theme/vim'
 Plugin 'scrooloose/nerdtree'
@@ -46,6 +48,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()            " required
 filetype plugin indent on    " required~
 
@@ -55,28 +59,38 @@ filetype plugin indent on    " required~
 " sets how many lines of history vim has to remember
 set history=500
 
+let g:airline_theme='one'
+let g:airline#extensions#tabline#enabled = 1
+
 " enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" Set whitespaces and tab to characters
+set listchars=tab:>-
+set list
 
 " set to auto read when a file is changed from the outside
 set autoread
 
 " with a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = "'"
+let mapleader =";"
 
 " fast saving
 nmap <leader>w :w!<cr>
 
-" :w sudo saves the file 
+" :w sudo saves the file
 " (useful for handling the permission-denied error)
 cmap w!! w !sudo tee > /dev/null %
 
 " Set up for auto pair
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 0
 
+" Map hotkey for ND tree
 nmap <F6> :NERDTreeToggle<CR>
+
+" Map hotkey for Ctag
 nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim user interface
@@ -146,6 +160,14 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" Set the hybride number
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -338,6 +360,8 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open fzf fuzzy search for file navigation
+map <leader>f :FZF<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -403,11 +427,12 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-set number
 let g:ycm_semantic_triggers = {
 \   'roslaunch' : ['="', '$(', '/'],
 \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
 \ }
+
+" Curtine to switch between header and source
 map <F5> :call CurtineIncSw()<CR>
 if has('nvim') || has('termguicolors')
   set termguicolors
