@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
-"       Amir Salihefendic — @amix3k
+" Maintainer:
+"       Sam Lyu
 "
 " Awesome_version:
 "       Get this config, nice color schemes and lots of plugins!
@@ -36,14 +36,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
-Plugin 'https://github.com/taketwo/vim-ros.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ericcurtin/curtineincsw.vim'
-Plugin 'challenger-deep-theme/vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'morhetz/gruvbox'
-Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plugin 'majutsushi/tagbar'
@@ -51,16 +47,13 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 call vundle#end()            " required
-filetype plugin indent on    " required~
+filetype plugin indent on    " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => general
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " sets how many lines of history vim has to remember
 set history=500
-
-let g:airline_theme='one'
-let g:airline#extensions#tabline#enabled = 1
 
 " enable filetype plugins
 filetype plugin on
@@ -125,23 +118,23 @@ set whichwrap+=<,>,h,l
 " ignore case when searching
 set ignorecase
 
-" when searching try to be smart about cases 
+" when searching try to be smart about cases
 set smartcase
 
 " highlight search results
 set hlsearch
 
 " makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " for regular expressions turn magic on
 set magic
 
 " show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " how many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -173,7 +166,7 @@ augroup END
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -181,7 +174,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme gruvbox  
+    colorscheme gruvbox
 catch
 endtry
 
@@ -250,7 +243,7 @@ map <space> /
 map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+map <silent> <leader><cr> :nohl<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -305,10 +298,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-set laststatus=2
+"set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -409,7 +402,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
@@ -431,9 +424,10 @@ let g:ycm_semantic_triggers = {
 \   'roslaunch' : ['="', '$(', '/'],
 \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
 \ }
+let g:ycm_use_clang=1
 
-" Curtine to switch between header and source
-map <F5> :call CurtineIncSw()<CR>
-if has('nvim') || has('termguicolors')
-  set termguicolors
-endif
+" Configured Airline
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
