@@ -437,7 +437,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" make Y effect to end of line instead of whole line
+" make Y yank to end of line instead of whole line
 map Y y$
 
 " Use the system clipboard as the default register
