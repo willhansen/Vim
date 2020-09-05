@@ -439,3 +439,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " make Y effect to end of line instead of whole line
 map Y y$
+
+" Use the system clipboard as the default register
+set clipboard=unnamedplus
