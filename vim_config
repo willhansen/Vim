@@ -448,3 +448,8 @@ set clipboard=unnamedplus
 
 " Let the enter button clear highlighting after a search
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
+" ctrl-s to save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
