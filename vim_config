@@ -147,6 +147,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+set belloff=all
 
 " Properly disable sound on errors on MacVim
 if has("gui_macvim")
@@ -223,7 +224,8 @@ set expandtab     " Use spaces when the <Tab> key is pressed
 set cindent       " Turn on automatic C-code indentation
 " Actual formatting rules go here
 set lbr
-set tw=120
+"set tw=120 Automatically inserts linebreaks in code.  BAD
+set tw=0
 
 set ai "Auto indent
 set si "Smart indent
@@ -455,3 +457,6 @@ set clipboard=unnamedplus
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+" update if the file has changed
+set autoread
