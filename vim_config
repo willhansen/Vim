@@ -159,13 +159,13 @@ endif
 set foldcolumn=1
 
 " Set the hybride number
-set number relativenumber
+set number " relativenumber
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+"augroup numbertoggle
+  "autocmd!
+  "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+"augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -460,3 +460,9 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " update if the file has changed
 set autoread
+
+" alt-arrow for window switching
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
