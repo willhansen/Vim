@@ -41,7 +41,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'morhetz/gruvbox'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
@@ -50,6 +50,11 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-surround'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'tmhedberg/matchit'
+"Plugin 'vim-python/python-syntax'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -180,6 +185,7 @@ endif
 
 try
     colorscheme gruvbox
+    "colorscheme badwolf
 catch
 endtry
 
@@ -432,7 +438,7 @@ let g:ycm_semantic_triggers = {
 \   'roslaunch' : ['="', '$(', '/'],
 \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
 \ }
-let g:ycm_use_clang=1
+let g:ycm_use_clang=0
 
 " Configured Airline
 let g:airline_theme='badwolf'
